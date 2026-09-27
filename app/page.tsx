@@ -1,3 +1,5 @@
+import Hero from "@/components/Hero";
+import WorkoutGrid from "@/components/WorkoutGrid";
 import { getWorkouts } from "@/lib/api";
 
 export default async function Home() {
@@ -5,14 +7,8 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>FitLog</h1>
-
-      {workouts.map((workout) => (
-        <div key={workout.id}>
-          <h2>{workout.name}</h2>
-          <p>{workout.duration} minutes</p>
-        </div>
-      ))}
+      <Hero />
+      <WorkoutGrid workouts={workouts} />
     </main>
   );
 }

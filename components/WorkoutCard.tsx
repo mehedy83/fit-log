@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Clock3, Flame, Star } from "lucide-react";
 import type { Workout } from "@/types/workout";
 
 interface WorkoutCardProps {
@@ -11,69 +12,57 @@ export default function WorkoutCard({
   return (
     <Link
       href={`/workouts/${workout.id}`}
-      className="group block overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition duration-300 hover:-translate-y-1 hover:border-[#ccff00]"
+      className="group block overflow-hidden rounded-lg border border-zinc-800 bg-[#15171c] transition duration-300 hover:-translate-y-0.5 hover:border-zinc-600"
     >
-     
+      
       <div className="relative overflow-hidden bg-zinc-800">
         <img
           src={workout.image}
           alt={workout.name}
-          className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-85 w-full object-cover transition duration-500 group-hover:scale-105"
         />
+      </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-       
-        <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
-          {workout.muscleGroups.map((muscle) => (
+      
+      <div className="p-3.5">
+        
+        <div className="flex flex-wrap gap-1.5">
+          {workout.muscleGroups.slice(0, 3).map((muscle) => (
             <span
               key={muscle}
-              className="rounded-full border border-[#ccff00]/40 bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#ccff00] backdrop-blur"
+              className="rounded-[12px] bg-[#ccff00] px-2 py-1 text-[10px] font-black uppercase tracking-wide text-black"
             >
               {muscle}
             </span>
           ))}
         </div>
-      </div>
 
-      
-      <div className="p-5">
-        <h2 className="text-lg font-black uppercase leading-tight text-white transition group-hover:text-[#ccff00]">
+        
+        <h2 className="mt-3 truncate text-[14px] font-black uppercase leading-tight text-white transition group-hover:text-[#ccff00]">
           {workout.name}
         </h2>
 
-        <p className="mt-2 text-sm text-zinc-500">
+        
+        <p className="mt-1 text-[10px] uppercase tracking-wide text-zinc-500">
           {workout.equipment}
         </p>
 
         
-        <div className="mt-5 grid grid-cols-3 border-t border-zinc-800 pt-4">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-600">
-              Duration
-            </p>
-            <p className="mt-1 text-sm font-bold text-zinc-300">
-              {workout.duration} min
-            </p>
-          </div>
+        <div className="mt-4 flex items-center gap-4 border-t border-zinc-800 pt-3 text-[13px] text-zinc-500">
+          <span className="inline-flex items-center gap-1">
+            <Clock3 size={11} />
+            {workout.duration} min
+          </span>
 
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-600">
-              Calories
-            </p>
-            <p className="mt-1 text-sm font-bold text-zinc-300">
-              {workout.caloriesBurned} kcal
-            </p>
-          </div>
+          <span className="inline-flex items-center gap-1">
+            <Flame size={11} />
+            {workout.caloriesBurned} kcal
+          </span>
 
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-600">
-              Rating
-            </p>
-            <p className="mt-1 text-sm font-bold text-[#ccff00]">
-              ★ {workout.rating}
-            </p>
-          </div>
+          <span className="inline-flex items-center gap-1">
+            <Star size={11} />
+            {workout.rating}
+          </span>
         </div>
       </div>
     </Link>

@@ -36,7 +36,7 @@ export default async function WorkoutDetailsPage({
         <div className="mx-auto max-w-7xl px-5 pt-6 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-wider text-zinc-500 transition hover:text-[#ccff00]"
+            className="inline-flex items-center gap-2 border rounded-[8px]  px-2 py-2 text-[12px] font-bold uppercase tracking-wider text-zinc-500 transition hover:text-[#ccff00]"
           >
             <ArrowLeft size={13} />
             Back To Library
@@ -72,7 +72,7 @@ export default async function WorkoutDetailsPage({
                 {workout.muscleGroups.map((muscle) => (
                   <span
                     key={muscle}
-                    className="rounded-[3px] bg-[#ccff00] px-2.5 py-1 text-[8px] font-black uppercase tracking-wide text-black"
+                    className="rounded-[3px] bg-[#ccff00] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-black"
                   >
                     {muscle}
                   </span>
@@ -85,7 +85,7 @@ export default async function WorkoutDetailsPage({
               </h1>
 
               
-              <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-500">
+              <p className="mt-5 max-w-xl text-[14px] leading-7 text-zinc-500">
                 {workout.description}
               </p>
 
@@ -96,7 +96,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Dumbbell size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Equipment
                     </span>
                   </div>
@@ -110,7 +110,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Gauge size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Difficulty
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Repeat size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Sets / Reps
                     </span>
                   </div>
@@ -138,7 +138,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Clock3 size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Duration
                     </span>
                   </div>
@@ -152,7 +152,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Flame size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Calories
                     </span>
                   </div>
@@ -166,7 +166,7 @@ export default async function WorkoutDetailsPage({
                 <div className="flex items-center justify-between px-4 py-3">
                   <div className="flex items-center gap-2 text-zinc-500">
                     <Star size={14} />
-                    <span className="text-[9px] font-bold uppercase tracking-wider">
+                    <span className="text-[10px] font-bold uppercase tracking-wider">
                       Rating
                     </span>
                   </div>
@@ -193,11 +193,11 @@ export default async function WorkoutDetailsPage({
                         key={index}
                         className="flex gap-3"
                       >
-                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ccff00] text-[8px] font-black text-black">
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ccff00] text-[10px] font-black text-black">
                           {index + 1}
                         </span>
 
-                        <p className="text-[10px] leading-5 text-zinc-500">
+                        <p className="text-[14px] leading-5 text-zinc-500">
                           {instruction}
                         </p>
                       </li>

@@ -36,7 +36,9 @@ export function FitLogProvider({
   const [plan, setPlan] = useState<Workout[]>([]);
   const [saved, setSaved] = useState<Workout[]>([]);
   const [done, setDone] = useState<Workout[]>([]);
+  const [hydrated, setHydrated] = useState(false);
 
+  
   useEffect(() => {
     const storedPlan = localStorage.getItem("fitlog-plan");
     const storedSaved = localStorage.getItem("fitlog-saved");
@@ -53,19 +55,28 @@ export function FitLogProvider({
     if (storedDone) {
       setDone(JSON.parse(storedDone));
     }
+
+    setHydrated(true);
   }, []);
 
+  
   useEffect(() => {
+    if (!hydrated) return;
+
     localStorage.setItem("fitlog-plan", JSON.stringify(plan));
-  }, [plan]);
+  }, [plan, hydrated]);
 
   useEffect(() => {
+    if (!hydrated) return;
+
     localStorage.setItem("fitlog-saved", JSON.stringify(saved));
-  }, [saved]);
+  }, [saved, hydrated]);
 
   useEffect(() => {
+    if (!hydrated) return;
+
     localStorage.setItem("fitlog-done", JSON.stringify(done));
-  }, [done]);
+  }, [done, hydrated]);
 
   const addToPlan = (workout: Workout) => {
     setPlan((currentPlan) => {
@@ -73,11 +84,7 @@ export function FitLogProvider({
         return currentPlan;
       }
 
-      if (
-        currentPlan.some(
-          (item) => item.id === workout.id,
-        )
-      ) {
+      if (currentPlan.some((item) => item.id === workout.id)) {
         return currentPlan;
       }
 
@@ -87,19 +94,13 @@ export function FitLogProvider({
 
   const removeFromPlan = (id: number) => {
     setPlan((currentPlan) =>
-      currentPlan.filter(
-        (workout) => workout.id !== id,
-      ),
+      currentPlan.filter((workout) => workout.id !== id),
     );
   };
 
   const saveWorkout = (workout: Workout) => {
     setSaved((currentSaved) => {
-      if (
-        currentSaved.some(
-          (item) => item.id === workout.id,
-        )
-      ) {
+      if (currentSaved.some((item) => item.id === workout.id)) {
         return currentSaved;
       }
 
@@ -109,9 +110,7 @@ export function FitLogProvider({
 
   const removeFromSaved = (id: number) => {
     setSaved((currentSaved) =>
-      currentSaved.filter(
-        (workout) => workout.id !== id,
-      ),
+      currentSaved.filter((workout) => workout.id !== id),
     );
   };
 
@@ -126,11 +125,7 @@ export function FitLogProvider({
       }
 
       setDone((currentDone) => {
-        if (
-          currentDone.some(
-            (item) => item.id === workout.id,
-          )
-        ) {
+        if (currentDone.some((item) => item.id === workout.id)) {
           return currentDone;
         }
 

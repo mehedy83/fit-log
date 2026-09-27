@@ -28,12 +28,15 @@ const FitLogContext = createContext<FitLogContextType | undefined>(
   undefined,
 );
 
-export function FitLogProvider({ children }: { children: ReactNode }) {
+export function FitLogProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [plan, setPlan] = useState<Workout[]>([]);
   const [saved, setSaved] = useState<Workout[]>([]);
   const [done, setDone] = useState<Workout[]>([]);
 
-  // Load data from localStorage
   useEffect(() => {
     const storedPlan = localStorage.getItem("fitlog-plan");
     const storedSaved = localStorage.getItem("fitlog-saved");
@@ -52,33 +55,29 @@ export function FitLogProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Save plan
   useEffect(() => {
     localStorage.setItem("fitlog-plan", JSON.stringify(plan));
   }, [plan]);
 
-  // Save saved workouts
   useEffect(() => {
     localStorage.setItem("fitlog-saved", JSON.stringify(saved));
   }, [saved]);
 
-  // Save completed workouts
   useEffect(() => {
     localStorage.setItem("fitlog-done", JSON.stringify(done));
   }, [done]);
 
-  // Add workout to today's plan
   const addToPlan = (workout: Workout) => {
     setPlan((currentPlan) => {
       if (currentPlan.length >= 5) {
         return currentPlan;
       }
 
-      const alreadyExists = currentPlan.some(
-        (item) => item.id === workout.id,
-      );
-
-      if (alreadyExists) {
+      if (
+        currentPlan.some(
+          (item) => item.id === workout.id,
+        )
+      ) {
         return currentPlan;
       }
 
@@ -86,21 +85,21 @@ export function FitLogProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // Remove workout from today's plan
   const removeFromPlan = (id: number) => {
     setPlan((currentPlan) =>
-      currentPlan.filter((workout) => workout.id !== id),
+      currentPlan.filter(
+        (workout) => workout.id !== id,
+      ),
     );
   };
 
-  // Save workout for later
   const saveWorkout = (workout: Workout) => {
     setSaved((currentSaved) => {
-      const alreadyExists = currentSaved.some(
-        (item) => item.id === workout.id,
-      );
-
-      if (alreadyExists) {
+      if (
+        currentSaved.some(
+          (item) => item.id === workout.id,
+        )
+      ) {
         return currentSaved;
       }
 
@@ -108,14 +107,14 @@ export function FitLogProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // Remove saved workout
   const removeFromSaved = (id: number) => {
     setSaved((currentSaved) =>
-      currentSaved.filter((workout) => workout.id !== id),
+      currentSaved.filter(
+        (workout) => workout.id !== id,
+      ),
     );
   };
 
-  // Mark workout as completed
   const markAsDone = (id: number) => {
     setPlan((currentPlan) => {
       const workout = currentPlan.find(
@@ -127,11 +126,11 @@ export function FitLogProvider({ children }: { children: ReactNode }) {
       }
 
       setDone((currentDone) => {
-        const alreadyDone = currentDone.some(
-          (item) => item.id === id,
-        );
-
-        if (alreadyDone) {
+        if (
+          currentDone.some(
+            (item) => item.id === workout.id,
+          )
+        ) {
           return currentDone;
         }
 
